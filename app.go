@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -20,7 +21,13 @@ func newRouter() *chi.Mux {
 	r.Get("/", gatcha.Index)
 	r.Post("/gacha/process/history", gatcha.Process)
 
+	r.Get("/ping", ping)
+
 	return r
+}
+
+func ping(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "pong")
 }
 
 func fileServer(r *chi.Mux, path string, root http.FileSystem) {
