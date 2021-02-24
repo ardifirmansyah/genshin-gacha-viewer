@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/go-chi/chi"
@@ -11,7 +12,11 @@ import (
 )
 
 func main() {
-	_ = http.ListenAndServe(":8080", newRouter())
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	_ = http.ListenAndServe(":" + port, newRouter())
 }
 
 func newRouter() *chi.Mux {
