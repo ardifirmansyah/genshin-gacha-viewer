@@ -139,6 +139,9 @@ function dataToTable(data) {
 }
 
 function mapDataToChart(title, data, chart) {
+    if (!data) {
+        return
+    }
     var wishData = {
         labels: [
             '3* Weapon',
